@@ -1,4 +1,5 @@
 import axios from 'axios';
+//
 export function fetcPhotos(search) {
   const BASE_URL = 'https://pixabay.com/';
   const END_POINT = 'api/';
