@@ -39,7 +39,6 @@ const iziToastSet = {
 refs.form.addEventListener('submit', async e => {
   e.preventDefault();
   disableMoreBtn();
-
   search = refs.form.elements.search.value.trim();
   if (search === '') {
     return;
@@ -71,12 +70,13 @@ refs.form.addEventListener('submit', async e => {
 });
 
 refs.btnMore.addEventListener('click', async () => {
+  page += 1;
   try {
-    page += 1;
     enableLoader();
     const photos = await fetchPhotos(search, page);
     disableLoader();
     renderPhotos(photos.hits, refs.gallery);
+    scroll();
     if (page === totalPages) {
       disableMoreBtn();
       iziToastSet.message =
@@ -100,4 +100,10 @@ function enableMoreBtn() {
 }
 function disableMoreBtn() {
   refs.btnMore.classList.add('hidden');
+}
+function scroll() {
+  window.scrollBy(
+    0,
+    document.querySelector('.gallery-item').getBoundingClientRect().height * 2
+  );
 }
