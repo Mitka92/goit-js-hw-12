@@ -102,8 +102,11 @@ function disableMoreBtn() {
   refs.btnMore.classList.add('hidden');
 }
 function scroll() {
-  window.scrollBy(
-    0,
-    document.querySelector('.gallery-item').getBoundingClientRect().height * 2
-  );
+  window.scrollBy({
+    top:
+      document.querySelector('.gallery-item').getBoundingClientRect().height *
+      2,
+    left: 0,
+    behavior: 'smooth',
+  });
 }
